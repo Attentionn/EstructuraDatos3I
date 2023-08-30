@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+function obtenerNumeroAleatorio(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function movimientoTortuga() {
+  const aleatorio = obtenerNumeroAleatorio(1, 100);
+
+  if (aleatorio <= 45) {
+    return 3;
+  } else if (aleatorio <= 70) {
+    return -6;
+  } else {
+    return 1;
+  }
+}
+
+function movimientoLiebre() {
+  const aleatorio = obtenerNumeroAleatorio(1, 100);
+
+  if (aleatorio <= 20) {
+    return 0;
+  } else if (aleatorio <= 40) {
+    return 9;
+  } else if (aleatorio <= 50) {
+    return -12;
+  } else if (aleatorio <= 85) {
+    return 1;
+  } else {
+    return -2;
+  }
+}
+
+function simularCarrera() {
+  let posicionTortuga = 0;
+  let posicionLiebre = 0;
+
+  while (posicionTortuga < 100 && posicionLiebre < 100) {
+    const avanceTortuga = movimientoTortuga();
+    const avanceLiebre = movimientoLiebre();
+
+    posicionTortuga += avanceTortuga;
+    posicionLiebre += avanceLiebre;
+
+    posicionTortuga = Math.max(posicionTortuga, 0);
+    posicionLiebre = Math.max(posicionLiebre, 0);
+
+    console.log(`La tortuga avanzó ${avanceTortuga} lugares, y la liebre avanzó ${avanceLiebre} lugares.`);
+  }
+
+  if (posicionTortuga >= 100 && posicionLiebre >= 100) {
+    console.log("¡Empate!");
+  } else if (posicionTortuga >= 100) {
+    console.log("¡Gana la tortuga!");
+  } else {
+    console.log("¡Gana la liebre!");
+  }
+}
+
+simularCarrera();
+
+  
+
+  </script>
+</body>
+</html>
